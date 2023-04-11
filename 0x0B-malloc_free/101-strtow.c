@@ -6,9 +6,11 @@ int count_words(char *str);
 char **strtow(char *str);
 
 /**
- * strtow - splits a string into words
- * @str: the string to split
- * Return: a pointer to an array of strings (words), or NULL if it fails
+ * word_len - Locates the index marking the end of the
+ *            first word contained within a string.
+ * @str: The string to be searched.
+ *
+ * Return: The index marking the end of the initial word pointed to by str.
  */
 int word_len(char *str)
 {
