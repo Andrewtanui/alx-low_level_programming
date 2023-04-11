@@ -8,7 +8,6 @@ char **strtow(char *str);
 /**
  * strtow - splits a string into words
  * @str: the string to split
- *
  * Return: a pointer to an array of strings (words), or NULL if it fails
  */
 int word_len(char *str)
