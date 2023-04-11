@@ -7,12 +7,23 @@
 
 void jack_bauer(void)
 {
-	int hour;
-	int minute;
+	int hours = 0;
+	int min = 0;
 
-  for (hour = 0; hour < 24; hour++) {
-    for (minute = 0; minute < 60; minute++) {
-      printf("%02d:%02d\n", hour, minute);
-    }
-  }
+	while (hours < 24)
+	{
+		while (min < 60)
+		{
+			_putchar('0' + (hours / 10));
+			_putchar('0' + (hours % 10));
+			_putchar(':');
+			_putchar('0' + (min / 10));
+			_putchar('0' + (min % 10));
+			_putchar('\n');
+			min++;
+		}
+		min = 0;
+		hours++;
+	}
 }
+
