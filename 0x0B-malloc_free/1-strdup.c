@@ -11,20 +11,24 @@
  */
 char *_strdup(char *str)
 {
-    if (str == NULL) {
-        return NULL;
-    }
+	char *duplicate;
+	int index, len = 0;
 
-    size_t len = strlen(str);
+	if (str == NULL)
+		return (NULL);
 
-    char *dup = malloc(len + 1);
+	for (index = 0; str[index]; index++)
+		len++;
 
-    if (dup == NULL) {
-        return NULL;
-    }
+	duplicate = malloc(sizeof(char) * (len + 1));
 
-    strcpy(dup, str);
+	if (duplicate == NULL)
+		return (NULL);
 
-    return dup;
+	for (index = 0; str[index]; index++)
+		duplicate[index] = str[index];
+
+	duplicate[len] = '\0';
+
+	return (duplicate);
 }
-
