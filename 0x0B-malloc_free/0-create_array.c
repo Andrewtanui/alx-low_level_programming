@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdlib.h>
 
 // Function that creates an array of chars and initializes it with a specific char.
