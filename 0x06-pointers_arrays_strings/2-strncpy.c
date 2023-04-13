@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * _strncpy - Copies up to n characters from a string
  *
