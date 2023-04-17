@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 /**
- * main - Entry point of the program. 
+ * main - Entry point of the program
+ *
  * This program prints the name of the file it was compiled from.
  *
  * Return: Always 0 (success)
