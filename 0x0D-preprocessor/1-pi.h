@@ -1,5 +1,5 @@
-#ifndef MY_HEADER_FILE_H
-#define MY_HEADER_FILE_H
+#ifndef PI_H
+#define PI_H
 
 /*
  * File: 1-pi.h
