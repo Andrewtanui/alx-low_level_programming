@@ -2,8 +2,9 @@
 #define OBJECT_LIKE_MACRO_H  
 
 /*
- * This header file defines a macro named SIZE, which is used to represent
- * a fixed size or capacity in various data structures or algorithms.
+ * File: 0-object_like_macro.h
+ * Desc: Header file that defines a macro named
+ *       SIZE as an abbreviation for token 1024.
  */
 
 #define SIZE 1024 
