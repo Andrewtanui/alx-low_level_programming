@@ -3,14 +3,14 @@
 
 /*
  * Desc: Header file containing prototypes for all functions
- *       used in the 0x10-variadic_functions directory.
+ *       used in the 0x0F-variadic_functions directory.
  */
- 
+
 #include <stdarg.h>
 
 /**
  * struct printer - A new struct type defining a printer.
- * @symbol: A symbol representing data type.
+ * @symbol: Represents data type.
  * @print: A function pointer to a function that prints
  *         a data type corresponding to symbol.
  */
