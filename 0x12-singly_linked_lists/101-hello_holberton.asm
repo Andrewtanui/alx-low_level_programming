@@ -1,5 +1,5 @@
 section .data
-    msg db "Hello, Holberton\n", 0x0A, 0x00  ; Message to be printed (with newline)
+    msg db "Hello, Holberton", 0x0A, 0x00  ; Message to be printed (with newline)
 
 section .text
     global main
