@@ -6,9 +6,10 @@ section .text
     extern printf
 
 main:
+    sub rsp, 8          ; Align stack to 16-byte boundary
     mov rdi, msg        ; Set first argument (format string) to msg
     xor esi, esi        ; Set second argument (varargs) to 0
+    mov eax, 0          ; Set return value to 0
     call printf         ; Call printf to print the message
-
-    xor eax, eax        ; Set return value to 0
+    add rsp, 8          ; Restore stack alignment
     ret                 ; Return from main
