@@ -1,14 +1,23 @@
 #ifndef LISTS_H
 #define LISTS_H
 
+/*
+ * Description:
+ * This header file contains the function prototypes and type definitions
+ * for all functions and types used in the 0x12-more_singly_linked_lists
+ * directory of the Holberton School curriculum.
+ */
+
 #include <stdlib.h>
 
 /**
  * struct listint_s - singly linked list
- * @n: integer
- * @next: points to the next node
+ * @n: an integer value stored in the node
+ * @next: a pointer to the next node in the list
  *
- * Description: singly linked list node structure
+ * Description:
+ * This is a structure definition for a node in a singly linked list. Each
+ * node contains an integer value and a pointer to the next node in the list.
  */
 typedef struct listint_s
 {
@@ -32,4 +41,4 @@ size_t print_listint_safe(const listint_t *head);
 size_t free_listint_safe(listint_t **h);
 listint_t *find_listint_loop(listint_t *head);
 
-#endif
+#endif /* LISTS_H */ 
