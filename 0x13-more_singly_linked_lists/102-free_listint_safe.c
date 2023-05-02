@@ -1,3 +1,8 @@
+#include "lists.h"
+
+size_t looped_listint_count(listint_t *head);
+size_t free_listint_safe(listint_t **h);
+
 /**
  * free_listint_safe - Frees a listint_t list
  * @h: Double pointer to the head of the list
