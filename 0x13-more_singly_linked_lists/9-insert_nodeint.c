@@ -20,8 +20,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
     if (idx == 0)
         return (add_nodeint(head, n));
 
-    /* Traverse the list until the node before the desired index */
-    tmp = *head;
+        tmp = *head;
     for (i = 0; i < idx - 1; i++)
     {
         if (tmp == NULL)
@@ -29,11 +28,9 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
         tmp = tmp->next;
     }
 
-    /* Check if we reached the end of the list */
-    if (tmp == NULL)
+       if (tmp == NULL)
         return (NULL);
 
-    /* Create the new node and link it to the list */
     new_node = malloc(sizeof(listint_t));
     if (new_node == NULL)
         return (NULL);
