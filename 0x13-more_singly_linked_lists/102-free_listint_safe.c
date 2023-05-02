@@ -1,7 +1,10 @@
+#include "lists.h"
+
 /**
  * free_listint_safe - Frees a listint_t list safely (ie.
  *                     can free lists containing loops)
- * @h: A pointer to the address of the head of the listint_t list.
+ * @h: A pointer to the address of
+ *     the head of the listint_t list.
  *
  * Return: The size of the list that was freed.
  *
@@ -9,11 +12,54 @@
  */
 size_t free_listint_safe(listint_t **h)
 {
-    size_t size = 0;
-    listint_t *slow = *h, *fast = *h, *tmp;
+    size_t count = 0;
+    listint_t *current, *tmp;
+    int loop_detected = 0;
 
-    if (!h || !*h)
-        return (size);
+    if (h == NULL || *h == NULL)
+        return (count);
+
+    current = *h;
+
+    while (current != NULL)
+    {
+        if (current->next >= current)
+        {
+            loop_detected = 1;
+            break;
+        }
+
+        tmp = current->next;
+        free(current);
+        current = tmp;
+        count++;
+    }
+
+    if (loop_detected)
+    {
+        *h = NULL;
+        return (count);
+    }
+
+    *h = NULL;
+    return (count);
+}
+/**
+ * looped_listint_count - Counts the number of unique nodes
+ *                      in a looped listint_t linked list.
+ * @head: A pointer to the head of the listint_t to check.
+ *
+ * Return: If the list is not looped - 0.
+ *         Otherwise - the number of unique nodes in the list.
+ */
+size_t looped_listint_count(listint_t *head)
+{
+    listint_t *slow = head, *fast = head;
+    int flag = 0;
+    size_t count = 0;
+
+    if (!head)
+        return (0);
 
     while (slow && fast && fast->next)
     {
@@ -21,73 +67,18 @@ size_t free_listint_safe(listint_t **h)
         fast = fast->next->next;
         if (slow == fast)
         {
-            size = count_nodes(*h, slow);
-            free_nodes(h, slow);
+            flag = 1;
             break;
         }
     }
 
-    if (!size)
-        free_nodes(h, NULL);
+    if (!flag)
+        return (0);
 
-    return (size);
-}
-
-/**
- * count_nodes - Counts the number of nodes in a looped listint_t linked list.
- * @h: A pointer to the head of the listint_t to check.
- * @loop: A pointer to the node where the loop was detected.
- *
- * Return: The number of nodes in the loop.
- */
-size_t count_nodes(listint_t *h, listint_t *loop)
-{
-    size_t count = 1;
-    listint_t *tmp = loop;
-
-    while (tmp->next != loop)
-    {
+    do {
+        slow = slow->next;
         count++;
-        tmp = tmp->next;
-    }
-
-    tmp = h;
-
-    while (tmp != loop)
-    {
-        count++;
-        tmp = tmp->next;
-    }
+    } while (slow != fast);
 
     return (count);
-}
-
-/**
- * free_nodes - Frees the nodes of a listint_t list.
- * @h: A pointer to the address of the head of the listint_t list.
- * @loop: A pointer to the node where the loop was detected.
- */
-void free_nodes(listint_t **h, listint_t *loop)
-{
-    listint_t *tmp = *h;
-
-    while (tmp && tmp != loop)
-    {
-        *h = (*h)->next;
-        free(tmp);
-        tmp = *h;
-    }
-
-    if (loop)
-    {
-        listint_t *prev = loop;
-
-        while (prev->next != loop)
-            prev = prev->next;
-
-        prev->next = NULL;
-        free(loop);
-    }
-
-    *h = NULL;
 }
