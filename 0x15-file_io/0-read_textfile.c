@@ -1,42 +1,41 @@
-#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
     if (filename == NULL)
         return 0;
 
-    int fd = open(filename, O_RDONLY);
-    if (fd == -1)
+    FILE *file = fopen(filename, "r");
+    if (file == NULL)
         return 0;
 
-    char buffer[1024];
-    ssize_t bytes_read, bytes_written, total_bytes_written = 0;
-
-    while (letters > 0)
+    char *buffer = (char *)malloc(sizeof(char) * (letters + 1));
+    if (buffer == NULL)
     {
-        bytes_read = read(fd, buffer, sizeof(buffer));
-        if (bytes_read == -1)
-        {
-            close_file(fd);
-            return 0;
-        }
-
-        if (bytes_read == 0)
-            break;
-
-        bytes_written = write(STDOUT_FILENO, buffer, bytes_read);
-        if (bytes_written == -1 || bytes_written != bytes_read)
-        {
-            close_file(fd);
-            return 0;
-        }
-
-        total_bytes_written += bytes_written;
-        letters -= bytes_written;
+        fclose(file);
+        return 0;
     }
 
-    close_file(fd);
-    return total_bytes_written;
-}
+    ssize_t bytesRead = fread(buffer, sizeof(char), letters, file);
+    if (bytesRead < 0)
+    {
+        free(buffer);
+        fclose(file);
+        return 0;
+    }
 
+    ssize_t bytesWritten = fwrite(buffer, sizeof(char), bytesRead, stdout);
+    if (bytesWritten != bytesRead)
+    {
+        free(buffer);
+        fclose(file);
+        return 0;
+    }
+
+    free(buffer);
+    fclose(file);
+
+    return bytesRead;
+}
