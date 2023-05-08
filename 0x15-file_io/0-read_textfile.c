@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 #include "main.h"
 #include <stdlib.h>
+=======
+#include <unistd.h>
+#include <fcntl.h>
+#include "main.h"
+>>>>>>> f1b2e9527431c99dcd65826eef93a7c8f9c98cae
 
 /**
  * read_textfile - Reads a text file and prints it to the POSIX standard output
