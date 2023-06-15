@@ -3,15 +3,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 
 /**
- * struct dlistint_s - doubly linked list
- * @n: integer
- * @prev: points to the previous node
- * @next: points to the next node
+ * struct dlistint_s - Doubly linked list node structure
+ * @n: Integer value
+ * @prev: Pointer to the previous node
+ * @next: Pointer to the next node
  *
- * Description: doubly linked list node structure
- * for Holberton project
+ * Description: Doubly linked list node structure
  */
 typedef struct dlistint_s
 {
